@@ -30,3 +30,8 @@ Never expose router credentials in browser JavaScript or commit them to this rep
 
 ## Next required decision
 Choose the router/gateway model and firmware before implementing real traffic enforcement. The adapter and installation package differ between MikroTik RouterOS and OpenWrt.
+
+## Multi-router architecture
+The dashboard now includes a compatibility catalog and a pluggable adapter contract. Targets include MikroTik RouterOS 7, OpenWrt, TP-Link Omada, Huawei, ZTE, Ubiquiti UniFi, pfSense, OPNsense and generic SNMP/UPnP devices. These are integration targets, not claims of working hardware control: vendor drivers are still planned/model-dependent and must be implemented and tested against exact models and firmware. See `docs/ROUTER_SUPPORT.md`.
+
+The Python adapter contract is in `backend/routers/base.py`; the capability registry is in `backend/routers/registry.py`. The browser UI does not contain router credentials and does not itself enforce bandwidth limits.
