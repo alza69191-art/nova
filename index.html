@@ -25,6 +25,11 @@
  <div class="table-wrap"><table><thead><tr><th>المستخدم</th><th>عنوان IP / MAC</th><th>تنزيل Mbps</th><th>رفع Mbps</th><th>الحصة GB</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="usersTable"></tbody></table></div>
  <div class="empty" id="empty">لا يوجد مستخدمون بعد. أضف أول مستخدم للبدء.</div>
 </section>
+<section class="panel router-panel" id="routers">
+ <div class="panel-head"><div><h2>توافق أجهزة الشبكة</h2><p>قائمة الموصلات الممكنة — التفعيل الفعلي يتطلب برنامج ربط محلياً لكل منصة</p></div><span class="status">بنية متعددة الموصلات</span></div>
+ <div id="routerCatalog" class="router-catalog"></div>
+ <p class="router-warning">تنبيه: ظهور الجهاز هنا لا يعني أن التحكم الفعلي مدعوم أو متصل حالياً. يلزم تنفيذ الموصل واختباره على طراز الجهاز وإصدار النظام قبل تطبيق السياسات.</p>
+</section>
 <section class="bottom-grid">
  <article class="panel"><div class="panel-head"><div><h2>توزيع السرعة</h2><p>حسب الحدود التي أدخلتها</p></div></div><div id="distribution" class="distribution"></div></article>
  <article class="panel"><div class="panel-head"><div><h2>آلية العمل</h2><p>ما الذي يعمل محلياً وما يحتاج الراوتر؟</p></div></div><ul class="notes"><li><b>يعمل دون إنترنت:</b> إدارة المستخدمين والإعدادات والتقارير المحفوظة.</li><li><b>يحتاج اتصالاً بالراوتر:</b> اكتشاف الأجهزة وفرض حدود السرعة وفصل الإنترنت فعلياً.</li><li><b>لا تضع كلمة مرور الراوتر هنا:</b> ستتم إضافة ربط آمن بعد تحديد نوع الراوتر.</li></ul></article>
@@ -39,5 +44,5 @@
 <label class="check"><input id="enabled" type="checkbox" checked> السماح بالوصول (حالة إدارية محلية)</label>
 <div class="dialog-actions"><button class="btn" value="cancel">إلغاء</button><button class="btn primary" id="saveUser" value="default">حفظ المستخدم</button></div>
 </form></dialog>
-<script src="app.js"></script>
+<script src="router-support.js"></script><script src="app.js"></script>
 </body></html>
