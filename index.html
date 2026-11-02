@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220"><meta name="description" content="إدارة مستخدمي الشبكة وتوزيع السرعة محلياً">
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css">
+<title>NetPilot — إدارة الشبكة</title>
+</head>
+<body>
+<aside class="sidebar">
+ <div class="brand"><span class="brand-mark">N</span><div><b>NetPilot</b><small>NETWORK CONTROL</small></div></div>
+ <nav><a class="active" href="#dashboard">▦ <span>لوحة التحكم</span></a><a href="#users">♙ <span>المستخدمون</span></a><a href="#settings">⚙ <span>الإعدادات</span></a></nav>
+ <div class="side-bottom"><span class="dot"></span><span>وضع محلي — دون إنترنت</span></div>
+</aside>
+<main>
+<header><div><div class="eyebrow">إدارة الشبكة المحلية</div><h1>لوحة التحكم</h1></div><div class="header-actions"><span class="offline-pill"><i></i> يعمل دون إنترنت</span><button class="btn primary" id="addTop">＋ إضافة مستخدم</button></div></header>
+<section class="stats">
+ <article class="stat"><span>إجمالي المستخدمين</span><strong id="totalUsers">0</strong><small>المسجلون في النظام</small></article>
+ <article class="stat"><span>المستخدمون النشطون</span><strong id="activeUsers">0</strong><small>حسب الحالة المحفوظة</small></article>
+ <article class="stat"><span>السرعة المخصصة</span><strong id="allocated">0 <em>Mbps</em></strong><small>مجموع حدود السرعة</small></article>
+ <article class="stat"><span>حالة الاتصال</span><strong class="local-state">محلي</strong><small>يلزم ربط الراوتر للقياس الفعلي</small></article>
+</section>
+<section class="panel">
+ <div class="panel-head"><div><h2>المستخدمون والأجهزة</h2><p>إدارة الحدود والحصص وحالة الوصول</p></div><div class="tools"><input id="search" placeholder="ابحث عن مستخدم أو IP…"><button class="btn" id="exportBtn">تصدير نسخة</button><button class="btn" id="importBtn">استيراد</button><input id="importFile" type="file" accept="application/json" hidden></div></div>
+ <div class="table-wrap"><table><thead><tr><th>المستخدم</th><th>عنوان IP / MAC</th><th>تنزيل Mbps</th><th>رفع Mbps</th><th>الحصة GB</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+ <div class="empty" id="empty">لا يوجد مستخدمون بعد. أضف أول مستخدم للبدء.</div>
+</section>
+<section class="bottom-grid">
+ <article class="panel"><div class="panel-head"><div><h2>توزيع السرعة</h2><p>حسب الحدود التي أدخلتها</p></div></div><div id="distribution" class="distribution"></div></article>
+ <article class="panel"><div class="panel-head"><div><h2>آلية العمل</h2><p>ما الذي يعمل محلياً وما يحتاج الراوتر؟</p></div></div><ul class="notes"><li><b>يعمل دون إنترنت:</b> إدارة المستخدمين والإعدادات والتقارير المحفوظة.</li><li><b>يحتاج اتصالاً بالراوتر:</b> اكتشاف الأجهزة وفرض حدود السرعة وفصل الإنترنت فعلياً.</li><li><b>لا تضع كلمة مرور الراوتر هنا:</b> ستتم إضافة ربط آمن بعد تحديد نوع الراوتر.</li></ul></article>
+</section>
+<footer>NetPilot <span>نسخة أولية محلية • البيانات محفوظة على هذا الجهاز</span></footer>
+</main>
+<dialog id="userDialog"><form method="dialog" id="userForm"><div class="dialog-head"><div><h2 id="dialogTitle">إضافة مستخدم</h2><p>أدخل بيانات الجهاز وحدود السرعة</p></div><button class="icon-btn" value="cancel" aria-label="إغلاق">×</button></div>
+<label>اسم المستخدم<input id="name" required maxlength="60" placeholder="مثال: أحمد"></label>
+<div class="two"><label>عنوان IP<input id="ip" placeholder="192.168.1.20"></label><label>MAC Address<input id="mac" placeholder="AA:BB:CC:DD:EE:FF"></label></div>
+<div class="two"><label>حد التنزيل (Mbps)<input id="down" type="number" min="0" step="0.1" value="10" required></label><label>حد الرفع (Mbps)<input id="up" type="number" min="0" step="0.1" value="2" required></label></div>
+<label>حصة البيانات (GB) — اتركها 0 بلا حد<input id="quota" type="number" min="0" step="1" value="0"></label>
+<label class="check"><input id="enabled" type="checkbox" checked> السماح بالوصول (حالة إدارية محلية)</label>
+<div class="dialog-actions"><button class="btn" value="cancel">إلغاء</button><button class="btn primary" id="saveUser" value="default">حفظ المستخدم</button></div>
+</form></dialog>
+<script src="app.js"></script>
+</body></html>
